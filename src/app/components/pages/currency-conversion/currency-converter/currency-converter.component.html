@@ -1,0 +1,84 @@
+@if (title || subtitle) {
+  <div class="header">
+    @if (title) {
+      <h3 class="header__title">{{ title }}</h3>
+    }
+    @if (subtitle) {
+      <p class="header__subtitle">{{ subtitle }}</p>
+    }
+  </div>
+}
+
+<form class="form" [formGroup]="form">
+  <app-input class="form__input" label="Amount" [formControlName]="formControls.AMOUNT" />
+  @if (form.get(formControls.AMOUNT)?.touched) {
+    <mat-error>
+      @if (form.get(formControls.AMOUNT)?.errors?.['required']) {
+        This field is required
+      }
+    </mat-error>
+  }
+
+  <div class="form__currency-row">
+    <div class="form__currency-row__field">
+      <app-dropdown
+        class="form__currency-row__dropdown"
+        [items]="currencyDropdownItems"
+        label="From"
+        [formControlName]="formControls.FROM_CURRENCY"
+      />
+
+      @if (form.get(formControls.FROM_CURRENCY)?.touched) {
+        <mat-error>
+          @if (form.get(formControls.FROM_CURRENCY)?.errors?.['required']) {
+            This field is required
+          }
+        </mat-error>
+      }
+    </div>
+
+    <span class="form__currency-row__arrow" aria-hidden="true">&gt;</span>
+
+    <div class="form__currency-row__field">
+      <app-dropdown
+        class="form__currency-row__dropdown"
+        [items]="currencyDropdownItems"
+        label="To"
+        [formControlName]="formControls.TO_CURRENCY"
+      />
+
+      @if (form.get(formControls.TO_CURRENCY)?.touched) {
+        <mat-error>
+          @if (form.get(formControls.TO_CURRENCY)?.errors?.['required']) {
+            This field is required
+          }
+        </mat-error>
+      }
+    </div>
+  </div>
+</form>
+
+@if (currencyConversionValue) {
+  <div class="result">
+    <p class="result__label">Converted Amount</p>
+
+    <div class="result__display">
+      <span class="result__display__symbol">{{ toCurrency?.symbol }}</span>
+
+      <span class="result__display__value">{{ currencyConversionValue.value }}</span>
+    </div>
+
+    <p class="result__rate">
+      <small
+        >1 {{ fromCurrency?.short_code }} = {{ exchangeRate }} {{ toCurrency?.short_code }}</small
+      >
+    </p>
+  </div>
+}
+
+<app-button
+  class="button"
+  label="Convert"
+  (clicked)="onConvertCurrencyClicked()"
+  [disabled]="form.invalid"
+/>

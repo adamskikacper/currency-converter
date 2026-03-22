@@ -11,7 +11,28 @@ export interface CurrencyDTO {
   thousands_separator: string;
 }
 
-export class Currency {
-  id: number = 0;
-  name: string = '';
+export interface Currency {
+  id: number;
+  name: string;
+  short_code: string;
+  symbol: string;
+}
+
+export interface CurrencyConversionDTO {
+  amount: number;
+  date: string;
+  from: string;
+  timestamp: number;
+  to: string;
+  value: number;
+}
+
+export interface CurrencyConversionValue {
+  value: number;
+}
+
+export interface CurrencyConversionRequest {
+  amount: number;
+  fromCurrency: string;
+  toCurrency: string;
 }

@@ -1,1 +1,15 @@
-<p>dropdown works!</p>
+<mat-form-field appearance="outline">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    type="text"
+    [formControl]="control"
+    [matAutocomplete]="auto"
+    placeholder="Search"
+  />
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayValue">
+    @for (item of items; track item.id) {
+      <mat-option [value]="item">{{ item.label || item.value }}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

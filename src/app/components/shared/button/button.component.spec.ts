@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExchangeRateComponent } from './exchange-rate.component';
+import { ButtonComponent } from './button.component';
 
-describe('ExchangeRateComponent', () => {
-  let component: ExchangeRateComponent;
-  let fixture: ComponentFixture<ExchangeRateComponent>;
+describe('Button', () => {
+  let component: ButtonComponent;
+  let fixture: ComponentFixture<ButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExchangeRateComponent],
+      imports: [ButtonComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ExchangeRateComponent);
+    fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

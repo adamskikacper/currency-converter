@@ -1,0 +1,44 @@
+@use 'fonts';
+@use 'sizes';
+@use 'mixins';
+@use 'colors';
+
+h1 {
+  @include mixins.h1-mobile();
+
+  @media screen and (min-width: sizes.$tablet-size) {
+    @include mixins.h1-desktop();
+  }
+}
+
+h2 {
+  @include mixins.h2-mobile();
+
+  @media screen and (min-width: sizes.$tablet-size) {
+    @include mixins.h2-desktop();
+  }
+}
+
+h3 {
+  @include mixins.h3();
+}
+
+h4 {
+  @include mixins.h4-mobile();
+
+  @media screen and (min-width: sizes.$tablet-size) {
+    @include mixins.h4-desktop();
+  }
+}
+
+h5 {
+  @include mixins.h5();
+}
+
+p {
+  @include mixins.paragraph();
+}
+
+small {
+  @include mixins.small-paragraph();
+}

@@ -1,1 +1,7 @@
-<app-currency-converter></app-currency-converter>
+<app-currency-converter
+  [title]="'Currency Converter'"
+  [subtitle]="'Real-time exchange rates'"
+  [currencies]="currencies"
+  [currencyConversionValue]="currencyConversionValue"
+  (convertCurrencyClicked)="onConvertCurrencyClicked($event)"
+></app-currency-converter>

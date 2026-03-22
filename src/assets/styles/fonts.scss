@@ -1,0 +1,32 @@
+@use 'sizes';
+
+:root {
+  --font-family-url: 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:wght@400;500;700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap';
+  --font-family-primary: 'Helvetica';
+  --font-weight-semi-bold: 500;
+  --font-weight-bold: 700;
+
+  --font-size-h1-desktop: #{sizes.$px-65};
+  --font-size-h2-desktop: #{sizes.$px-44};
+  --font-size-h3-desktop: #{sizes.$px-31};
+  --font-size-h4-desktop: #{sizes.$px-26};
+  --font-size-h5-desktop: #{sizes.$px-20};
+
+  --font-size-h1-mobile: #{sizes.$px-46};
+  --font-size-h2-mobile: #{sizes.$px-36};
+  --font-size-h3-mobile: #{sizes.$px-28};
+  --font-size-h4-mobile: #{sizes.$px-22};
+  --font-size-h5-mobile: #{sizes.$px-18};
+
+  --line-height-h1-desktop: #{sizes.$px-70};
+  --line-height-h2-desktop: #{sizes.$px-46};
+  --line-height-h3-desktop: #{sizes.$px-34};
+  --line-height-h4-desktop: #{sizes.$px-28};
+  --line-height-h5-desktop: #{sizes.$px-24};
+
+  --line-height-h1-mobile: #{sizes.$px-50};
+  --line-height-h2-mobile: #{sizes.$px-40};
+  --line-height-h3-mobile: #{sizes.$px-30};
+  --line-height-h4-mobile: #{sizes.$px-26};
+  --line-height-h5-mobile: #{sizes.$px-22};
+}

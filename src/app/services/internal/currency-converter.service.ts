@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Currency } from '../../model/currency.model';
+import { Currency, CurrencyConversionRequest, CurrencyConversionValue } from '../../model/currency.model';
 import { Observable } from 'rxjs';
 import { CurrencyConverterExternal } from '../external/currency-converter.service';
 
@@ -11,5 +11,9 @@ export class CurrencyConverterInternal {
 
   getCurrencies(): Observable<Currency[]> {
     return this.currencyConverterExternal.getCurrencies();
+  }
+
+  getCurrencyConversionValue(request: CurrencyConversionRequest): Observable<CurrencyConversionValue> {
+    return this.currencyConverterExternal.getCurrencyConversionValue(request);
   }
 }
