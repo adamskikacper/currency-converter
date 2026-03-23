@@ -10,75 +10,93 @@
 }
 
 <form class="form" [formGroup]="form">
-  <app-input class="form__input" label="Amount" [formControlName]="formControls.AMOUNT" />
-  @if (form.get(formControls.AMOUNT)?.touched) {
-    <mat-error>
-      @if (form.get(formControls.AMOUNT)?.errors?.['required']) {
-        This field is required
-      }
-    </mat-error>
-  }
-
   <div class="form__currency-row">
     <div class="form__currency-row__field">
-      <app-dropdown
-        class="form__currency-row__dropdown"
-        [items]="currencyDropdownItems"
-        label="From"
-        [formControlName]="formControls.FROM_CURRENCY"
-      />
+      <label class="form__currency-row__field__label"><b>From Currency *</b></label>
 
-      @if (form.get(formControls.FROM_CURRENCY)?.touched) {
-        <mat-error>
+      @if (filteredFromCurrencies.length > 0) {
+        <app-autocomplete
+          class="form__currency-row__field__autocomplete"
+          [formControlName]="formControls.FROM_CURRENCY"
+          [items]="filteredFromCurrencies"
+          (completeMethod)="filterFromCurrencies($event)"
+          placeholder="Select currency"
+          [dropdown]="true"
+          [showClear]="true"
+        />
+      }
+
+      @if (
+        form.get(formControls.FROM_CURRENCY)?.touched &&
+        form.get(formControls.FROM_CURRENCY)?.errors
+      ) {
+        <small class="form__currency-row__field__error">
           @if (form.get(formControls.FROM_CURRENCY)?.errors?.['required']) {
-            This field is required
+            {{ formErrorMessages.REQUIRED }}
           }
-        </mat-error>
+        </small>
       }
     </div>
-
-    <span class="form__currency-row__arrow" aria-hidden="true">&gt;</span>
 
     <div class="form__currency-row__field">
-      <app-dropdown
-        class="form__currency-row__dropdown"
-        [items]="currencyDropdownItems"
-        label="To"
-        [formControlName]="formControls.TO_CURRENCY"
-      />
+      <label class="form__currency-row__field__label"><b>To Currency *</b></label>
 
-      @if (form.get(formControls.TO_CURRENCY)?.touched) {
-        <mat-error>
+      @if (filteredToCurrencies.length > 0) {
+        <app-autocomplete
+          class="form__currency-row__field__autocomplete"
+          [formControlName]="formControls.TO_CURRENCY"
+          [items]="filteredToCurrencies"
+          (completeMethod)="filterToCurrencies($event)"
+          placeholder="Select currency"
+          [dropdown]="true"
+          [showClear]="true"
+        />
+      }
+
+      @if (
+        form.get(formControls.TO_CURRENCY)?.touched && form.get(formControls.TO_CURRENCY)?.errors
+      ) {
+        <small class="form__currency-row__field__error">
           @if (form.get(formControls.TO_CURRENCY)?.errors?.['required']) {
-            This field is required
+            {{ formErrorMessages.REQUIRED }}
           }
-        </mat-error>
+        </small>
       }
     </div>
+  </div>
+
+  <div class="form__amount">
+    <label class="form__amount__label"><b>Amount *</b></label>
+    <app-input-number
+      class="form__amount__input"
+      [formControlName]="formControls.AMOUNT"
+      mode="decimal"
+      [minFractionDigits]="2"
+      [maxFractionDigits]="2"
+      placeholder="Enter amount"
+      [min]="0.01"
+    />
+
+    @if (form.get(formControls.AMOUNT)?.touched && form.get(formControls.AMOUNT)?.errors) {
+      <small class="form__amount__error">
+        @if (form.get(formControls.AMOUNT)?.errors?.['required']) {
+          {{ formErrorMessages.REQUIRED }}
+        }
+        @if (form.get(formControls.AMOUNT)?.errors?.['min']) {
+          {{ formErrorMessages.MIN_AMOUNT }}
+        }
+      </small>
+    }
   </div>
 </form>
 
-@if (currencyConversionValue) {
-  <div class="result">
-    <p class="result__label">Converted Amount</p>
-
-    <div class="result__display">
-      <span class="result__display__symbol">{{ toCurrency?.symbol }}</span>
-
-      <span class="result__display__value">{{ currencyConversionValue.value }}</span>
-    </div>
-
-    <p class="result__rate">
-      <small
-        >1 {{ fromCurrency?.short_code }} = {{ exchangeRate }} {{ toCurrency?.short_code }}</small
-      >
-    </p>
-  </div>
+@if (fromCurrency && toCurrency && amount) {
+  <app-conversion-result
+    [isLoading]="isLoading"
+    [conversionValue]="currencyConversionValue"
+    [fromCurrency]="fromCurrency"
+    [toCurrency]="toCurrency"
+    [amount]="amount"
+    [exchangeRate]="exchangeRate"
+  />
 }
-
-<app-button
-  class="button"
-  label="Convert"
-  (clicked)="onConvertCurrencyClicked()"
-  [disabled]="form.invalid"
-/>

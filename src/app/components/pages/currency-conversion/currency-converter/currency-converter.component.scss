@@ -2,72 +2,116 @@
 @use 'assets/styles/colors';
 
 :host {
-  background: colors.$gray-100;
+  background: colors.$gray-200;
   border-radius: sizes.$px-16;
   box-shadow: 0 sizes.$px-4 sizes.$px-24 rgba(0, 0, 0, 0.08);
-  padding: sizes.$px-32;
+  padding: sizes.$px-20;
   width: 100%;
-  max-width: sizes.$px-480;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
-  gap: sizes.$px-16;
+  gap: sizes.$px-24;
 
   .header {
+    display: flex;
+    flex-direction: column;
+    gap: sizes.$px-10;
+
     &__title {
       color: colors.$gray-900;
+      margin: 0;
     }
 
     &__subtitle {
       color: colors.$gray-700;
+      margin: 0;
     }
   }
 
   .form {
     display: flex;
     flex-direction: column;
-    gap: sizes.$px-4;
+    gap: sizes.$px-20;
 
     &__currency-row {
       display: flex;
-      align-items: baseline;
-      gap: sizes.$px-12;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: sizes.$px-16;
 
       &__field {
-        flex: 1 1 0;
-        min-width: 0;
+        width: 100%;
         display: flex;
         flex-direction: column;
+        gap: sizes.$px-6;
+
+        &__label {
+          color: colors.$gray-900;
+          margin: 0;
+        }
+
+        &__autocomplete {
+          width: 100%;
+        }
+
+        &__error {
+          color: colors.$error;
+          margin: 0;
+        }
+      }
+    }
+
+    &__amount {
+      display: flex;
+      flex-direction: column;
+      gap: sizes.$px-6;
+
+      &__label {
+        color: colors.$gray-900;
+        margin: 0;
+      }
+
+      &__input {
+        width: 100%;
+      }
+
+      &__error {
+        color: colors.$error;
+        margin: 0;
       }
     }
   }
 
-  .result {
-    display: flex;
-    flex-direction: column;
-    gap: sizes.$px-8;
+  @media (min-width: sizes.$tablet-size) {
+    max-width: sizes.$px-480;
+    padding: sizes.$px-32;
 
-    &__display {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: sizes.$px-10;
-      border: 1px solid colors.$gray-300;
-      border-radius: sizes.$px-4;
-      padding: sizes.$px-14 sizes.$px-16;
-      background: colors.$gray-100;
-
-      &__symbol {
-        color: colors.$gray-700;
-      }
-
-      &__value {
-        color: colors.$gray-900;
-      }
+    .header {
+      gap: sizes.$px-15;
     }
 
-    &__rate {
-      color: colors.$gray-700;
-      text-align: center;
+    .form {
+      &__currency-row {
+        flex-direction: row;
+        gap: sizes.$px-12;
+      }
     }
+  }
+
+  @media (min-width: sizes.$laptop-size) {
+    max-width: sizes.$px-720;
+    padding: sizes.$px-40;
+
+    .form {
+      gap: sizes.$px-24;
+
+      &__currency-row {
+        gap: sizes.$px-16;
+      }
+    }
+  }
+
+  @media (min-width: sizes.$desktop-size) {
+    max-width: sizes.$px-900;
   }
 }

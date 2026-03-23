@@ -1,0 +1,12 @@
+<p-inputNumber
+  [mode]="mode"
+  [minFractionDigits]="2"
+  [maxFractionDigits]="2"
+  [placeholder]="placeholder"
+  [min]="min"
+  [max]="max"
+  [disabled]="disabled"
+  [(ngModel)]="value"
+  (ngModelChange)="onValueChange($event)"
+  (onBlur)="onTouched()"
+/>

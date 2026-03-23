@@ -1,0 +1,53 @@
+@use '../sizes';
+@use '../colors';
+
+.p-autocomplete {
+  width: 100%;
+
+  .p-inputtext {
+    width: 100%;
+    padding: sizes.$px-12 sizes.$px-16;
+    border: 1px solid colors.$gray-300;
+    border-radius: sizes.$px-4;
+    font-size: sizes.$px-14;
+    color: colors.$gray-900;
+    background: colors.$gray-100;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover:not(:focus) {
+      border-color: colors.$gray-700;
+    }
+
+    &:focus {
+      border-color: colors.$gray-700;
+      box-shadow: 0 0 0 1px colors.$gray-700;
+      outline: none;
+    }
+
+    &::placeholder {
+      color: colors.$gray-700;
+    }
+  }
+}
+
+.p-autocomplete-panel {
+  border: 1px solid colors.$gray-300;
+  border-radius: sizes.$px-4;
+  box-shadow: 0 sizes.$px-4 sizes.$px-12 rgba(0, 0, 0, 0.1);
+
+  .p-autocomplete-item {
+    padding: sizes.$px-8 sizes.$px-12;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: colors.$gray-200;
+    }
+
+    &.p-highlight {
+      background-color: colors.$gray-700;
+      color: colors.$gray-100;
+    }
+  }
+}

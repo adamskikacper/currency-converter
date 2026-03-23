@@ -1,0 +1,23 @@
+<p-autoComplete
+  [suggestions]="items"
+  [optionLabel]="field"
+  [placeholder]="placeholder"
+  [dropdown]="dropdown"
+  [showClear]="showClear"
+  [disabled]="disabled"
+  [(ngModel)]="value"
+  (ngModelChange)="onValueChange($event)"
+  (completeMethod)="completeMethod.emit($event)"
+  (onBlur)="onTouched()"
+>
+  <ng-template let-item pTemplate="item">
+    <div class="autocomplete-item">
+      @if (item.code) {
+        <span class="autocomplete-item__code"
+          ><b>{{ item.code }}</b></span
+        >
+      }
+      <span class="autocomplete-item__name">{{ item.label }}</span>
+    </div>
+  </ng-template>
+</p-autoComplete>

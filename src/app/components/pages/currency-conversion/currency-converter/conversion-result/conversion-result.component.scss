@@ -1,0 +1,65 @@
+@use 'assets/styles/sizes';
+@use 'assets/styles/colors';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: sizes.$px-8;
+
+  .label {
+    color: colors.$gray-900;
+    text-align: center;
+    margin: 0;
+  }
+
+  .display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: sizes.$px-10;
+    border: 2px solid colors.$gray-300;
+    border-radius: sizes.$px-8;
+    padding: sizes.$px-16 sizes.$px-20;
+    background: colors.$gray-100;
+    box-shadow: 0 sizes.$px-2 sizes.$px-8 rgba(0, 0, 0, 0.05);
+
+    &__symbol {
+      color: colors.$gray-700;
+    }
+
+    &__value {
+      color: colors.$gray-900;
+    }
+  }
+
+  .rate {
+    color: colors.$gray-700;
+    text-align: center;
+    margin: 0;
+  }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: sizes.$px-16;
+    color: colors.$gray-700;
+    text-align: center;
+  }
+
+  .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: sizes.$px-16;
+    color: colors.$gray-700;
+    text-align: center;
+    font-style: italic;
+  }
+
+  @media (min-width: sizes.$tablet-size) {
+    .display {
+      padding: sizes.$px-20 sizes.$px-24;
+    }
+  }
+}

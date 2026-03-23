@@ -14,17 +14,18 @@ import {
   styleUrl: './currency-conversion.component.scss',
 })
 export class CurrencyConversionComponent implements OnInit {
-  private currencyConverterInternal = inject(CurrencyConverterInternal);
   currencies: Currency[] = [];
-  currencyConversionValue: CurrencyConversionValue | null = null;
-  lastRequest: CurrencyConversionRequest | null = null;
+  currencyConversionValue: CurrencyConversionValue | undefined = undefined;
+  isLoading = false;
+
+  private currencyConverterInternal = inject(CurrencyConverterInternal);
 
   ngOnInit() {
     this.getCurrencies();
   }
 
   onConvertCurrencyClicked(request: CurrencyConversionRequest) {
-    this.lastRequest = request;
+    this.isLoading = true;
     this.convertCurrency(request);
   }
 
@@ -35,10 +36,15 @@ export class CurrencyConversionComponent implements OnInit {
   }
 
   private convertCurrency(request: CurrencyConversionRequest) {
-    this.currencyConverterInternal
-      .getCurrencyConversionValue(request)
-      .subscribe((response: CurrencyConversionValue) => {
+    this.currencyConverterInternal.getCurrencyConversionValue(request).subscribe({
+      next: (response: CurrencyConversionValue) => {
         this.currencyConversionValue = response;
-      });
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Currency conversion failed:', error);
+        this.isLoading = false;
+      },
+    });
   }
 }

@@ -1,0 +1,36 @@
+@use 'assets/styles/sizes';
+@use 'assets/styles/colors';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.autocomplete-item {
+  display: flex;
+  align-items: center;
+  gap: sizes.$px-8;
+
+  &__code {
+    color: colors.$gray-900;
+    min-width: sizes.$px-48;
+  }
+
+  &__name {
+    color: colors.$gray-700;
+  }
+}
+
+.autocomplete-selected {
+  display: flex;
+  align-items: center;
+  gap: sizes.$px-8;
+
+  &__code {
+    color: colors.$gray-900;
+  }
+
+  &__name {
+    color: colors.$gray-700;
+  }
+}

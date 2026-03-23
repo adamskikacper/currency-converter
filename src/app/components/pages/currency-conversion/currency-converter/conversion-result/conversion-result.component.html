@@ -1,0 +1,25 @@
+@if (isLoading) {
+  <p class="label"><b>Converting...</b></p>
+} @else if (conversionValue) {
+  <p class="label"><b>Converted Amount</b></p>
+
+  <div class="display">
+    <span class="display__symbol">{{ toCurrency?.symbol }}</span>
+    <span class="display__value">
+      <b>{{ conversionValue.value | number: '1.2-2' }}</b>
+    </span>
+  </div>
+
+  <p class="rate">
+    <small
+      >1 {{ fromCurrency?.short_code }} = {{ exchangeRate }} {{ toCurrency?.short_code }}</small
+    >
+  </p>
+} @else if (amount && fromCurrency && toCurrency) {
+  <div class="placeholder">
+    <small
+      >Ready to convert {{ amount }} {{ fromCurrency.short_code }} to
+      {{ toCurrency.short_code }}</small
+    >
+  </div>
+}

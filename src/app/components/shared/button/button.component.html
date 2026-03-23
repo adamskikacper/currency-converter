@@ -1,1 +1,9 @@
-<button matButton="filled" [disabled]="disabled" (click)="onClick()">{{ label }}</button>
+<p-button
+  [label]="label"
+  [disabled]="disabled"
+  [severity]="severity"
+  [size]="size"
+  [icon]="icon"
+  [loading]="loading"
+  (onClick)="onClick.emit()"
+/>
