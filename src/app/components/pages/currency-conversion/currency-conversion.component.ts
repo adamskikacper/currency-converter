@@ -36,15 +36,9 @@ export class CurrencyConversionComponent implements OnInit {
   }
 
   private convertCurrency(request: CurrencyConversionRequest) {
-    this.currencyConverterInternal.getCurrencyConversionValue(request).subscribe({
-      next: (response: CurrencyConversionValue) => {
-        this.currencyConversionValue = response;
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Currency conversion failed:', error);
-        this.isLoading = false;
-      },
+    this.currencyConverterInternal.getCurrencyConversionValue(request).subscribe((response) => {
+      this.currencyConversionValue = response;
+      this.isLoading = false;
     });
   }
 }
