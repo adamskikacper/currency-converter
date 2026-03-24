@@ -7,7 +7,7 @@ import {
   CurrencyDTO,
 } from '../../model/currency.model';
 import { ResponseDTO } from '../../model/common.model';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ENDPOINTS, HTTP_PARAMS } from '../../constants/endpoints';
 import { environment } from '../../../environments/environment';

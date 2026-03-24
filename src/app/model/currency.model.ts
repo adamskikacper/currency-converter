@@ -29,6 +29,7 @@ export interface CurrencyConversionDTO {
 
 export interface CurrencyConversionValue {
   value: number;
+  fromAmount: number;
 }
 
 export interface CurrencyConversionRequest {

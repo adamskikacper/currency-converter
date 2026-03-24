@@ -27,6 +27,7 @@ export class CurrencyConverterMapper {
   ): CurrencyConversionValue {
     return {
       value: dto.value,
+      fromAmount: dto.amount,
     };
   }
 }

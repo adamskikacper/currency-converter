@@ -13,6 +13,12 @@ export class ConversionResultComponent {
   @Input() conversionValue: CurrencyConversionValue | undefined = undefined;
   @Input() fromCurrency: Currency | undefined = undefined;
   @Input() toCurrency: Currency | undefined = undefined;
-  @Input() amount: number | undefined = undefined;
-  @Input() exchangeRate = '';
+
+  get exchangeRate(): number | undefined {
+    if (!this.conversionValue || !this.conversionValue.fromAmount) {
+      return undefined;
+    }
+
+    return this.conversionValue.value / this.conversionValue.fromAmount;
+  }
 }

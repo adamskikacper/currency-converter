@@ -79,13 +79,6 @@ export class CurrencyConverterComponent implements OnInit, OnChanges, OnDestroy 
     return this.currencies.find((currency) => currency.short_code === selectedCurrency.id);
   }
 
-  get exchangeRate(): string {
-    if (!this.currencyConversionValue) return '';
-    return (this.currencyConversionValue.value / this.form.get(FormControls.AMOUNT)?.value).toFixed(
-      6,
-    );
-  }
-
   get amount(): number | undefined {
     return this.form.get(FormControls.AMOUNT)?.value;
   }
