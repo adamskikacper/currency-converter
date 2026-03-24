@@ -11,14 +11,14 @@ import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ENDPOINTS, HTTP_PARAMS } from '../../constants/endpoints';
 import { environment } from '../../../environments/environment';
-import { CurrencyConverterMapping } from './currency-converter.mapping';
+import { CurrencyConverterMapper } from './currency-converter.mapper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CurrencyConverterExternal {
   private http = inject(HttpClient);
-  private currencyConverterMapping = inject(CurrencyConverterMapping);
+  private currencyConverterMapper = inject(CurrencyConverterMapper);
 
   getCurrencies(): Observable<Currency[]> {
     const queryUrl = `${environment.apiUrl}${ENDPOINTS.CURRENCIES}`;
@@ -27,7 +27,7 @@ export class CurrencyConverterExternal {
       .get<ResponseDTO<CurrencyDTO[]>>(queryUrl)
       .pipe(
         map((response: ResponseDTO<CurrencyDTO[]>) =>
-          this.currencyConverterMapping.mapCurrenciesDTOToCurrencies(response.response),
+          this.currencyConverterMapper.mapCurrenciesDTOToCurrencies(response.response),
         ),
       );
   }
@@ -47,7 +47,7 @@ export class CurrencyConverterExternal {
       })
       .pipe(
         map((response: ResponseDTO<CurrencyConversionDTO>) =>
-          this.currencyConverterMapping.mapCurrencyConversionDTOToCurrencyConversionValue(
+          this.currencyConverterMapper.mapCurrencyConversionDTOToCurrencyConversionValue(
             response.response,
           ),
         ),

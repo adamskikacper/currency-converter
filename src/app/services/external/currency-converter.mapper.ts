@@ -10,9 +10,9 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class CurrencyConverterMapping {
-  mapCurrenciesDTOToCurrencies(dtos: CurrencyDTO[]): Currency[] {
-    return dtos.map((dto: CurrencyDTO) => {
+export class CurrencyConverterMapper {
+  mapCurrenciesDTOToCurrencies(dto: CurrencyDTO[]): Currency[] {
+    return dto.map((dto: CurrencyDTO) => {
       return {
         id: dto.id,
         name: dto.name,

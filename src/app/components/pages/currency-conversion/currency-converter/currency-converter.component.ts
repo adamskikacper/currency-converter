@@ -19,6 +19,7 @@ import { AutocompleteComponent } from '../../../shared/autocomplete/autocomplete
 import { InputNumberComponent } from '../../../shared/input-number/input-number.component';
 import { ConversionResultComponent } from './conversion-result/conversion-result.component';
 import { FORM_ERROR_MESSAGES, FORM_VALIDATORS } from '../../../../constants/form-validation';
+import { sameCurrencyValidator } from '../../../../validators/same-currency.validator';
 import { Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
 import {
   AutocompleteCompleteEvent,
@@ -49,11 +50,15 @@ export class CurrencyConverterComponent implements OnInit, OnChanges, OnDestroy 
   @Input() currencyConversionValue: CurrencyConversionValue | undefined = undefined;
   @Input() isLoading = false;
   @Output() convertCurrencyClicked = new EventEmitter<CurrencyConversionRequest>();
+
   filteredFromCurrencies: AutocompleteItem[] = [];
   filteredToCurrencies: AutocompleteItem[] = [];
+
   form: FormGroup = new FormGroup({});
   formControls = FormControls;
   formErrorMessages = FORM_ERROR_MESSAGES;
+  formValidators = FORM_VALIDATORS;
+
   private subscription = new Subscription();
 
   private formBuilder = inject(FormBuilder);
@@ -103,14 +108,19 @@ export class CurrencyConverterComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   private initializeForm() {
-    this.form = this.formBuilder.group({
-      [FormControls.AMOUNT]: [
-        undefined,
-        [Validators.required, Validators.min(FORM_VALIDATORS.MIN_AMOUNT)],
-      ],
-      [FormControls.FROM_CURRENCY]: [undefined, Validators.required],
-      [FormControls.TO_CURRENCY]: [undefined, Validators.required],
-    });
+    this.form = this.formBuilder.group(
+      {
+        [FormControls.FROM_CURRENCY]: [undefined, Validators.required],
+        [FormControls.TO_CURRENCY]: [undefined, Validators.required],
+        [FormControls.AMOUNT]: [
+          undefined,
+          [Validators.required, Validators.min(FORM_VALIDATORS.MIN_AMOUNT)],
+        ],
+      },
+      {
+        validators: [sameCurrencyValidator(FormControls.FROM_CURRENCY, FormControls.TO_CURRENCY)],
+      },
+    );
   }
 
   public filterFromCurrencies(event: AutocompleteCompleteEvent) {

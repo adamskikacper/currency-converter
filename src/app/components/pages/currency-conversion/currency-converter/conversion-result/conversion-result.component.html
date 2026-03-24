@@ -12,14 +12,7 @@
 
   <p class="rate">
     <small
-      >1 {{ fromCurrency?.short_code }} = {{ exchangeRate }} {{ toCurrency?.short_code }}</small
+      >1 {{ fromCurrency?.short_code }} = {{ exchangeRate | number: '1.0-2' }} {{ toCurrency?.short_code }}</small
     >
   </p>
-} @else if (amount && fromCurrency && toCurrency) {
-  <div class="placeholder">
-    <small
-      >Ready to convert {{ amount }} {{ fromCurrency.short_code }} to
-      {{ toCurrency.short_code }}</small
-    >
-  </div>
 }

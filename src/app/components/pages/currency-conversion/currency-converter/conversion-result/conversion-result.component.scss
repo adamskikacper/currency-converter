@@ -17,11 +17,10 @@
     justify-content: center;
     align-items: center;
     gap: sizes.$px-10;
-    border: 2px solid colors.$gray-300;
-    border-radius: sizes.$px-8;
+    border: 1px solid colors.$gray-300;
+    border-radius: sizes.$px-5;
     padding: sizes.$px-16 sizes.$px-20;
     background: colors.$gray-100;
-    box-shadow: 0 sizes.$px-2 sizes.$px-8 rgba(0, 0, 0, 0.05);
 
     &__symbol {
       color: colors.$gray-700;

@@ -14,17 +14,15 @@
     <div class="form__currency-row__field">
       <label class="form__currency-row__field__label"><b>From Currency *</b></label>
 
-      @if (filteredFromCurrencies.length > 0) {
-        <app-autocomplete
-          class="form__currency-row__field__autocomplete"
-          [formControlName]="formControls.FROM_CURRENCY"
-          [items]="filteredFromCurrencies"
-          (completeMethod)="filterFromCurrencies($event)"
-          placeholder="Select currency"
-          [dropdown]="true"
-          [showClear]="true"
-        />
-      }
+      <app-autocomplete
+        class="form__currency-row__field__autocomplete"
+        [formControlName]="formControls.FROM_CURRENCY"
+        [items]="filteredFromCurrencies"
+        (completeMethod)="filterFromCurrencies($event)"
+        placeholder="Select currency"
+        [dropdown]="true"
+        [showClear]="true"
+      />
 
       @if (
         form.get(formControls.FROM_CURRENCY)?.touched &&
@@ -41,17 +39,15 @@
     <div class="form__currency-row__field">
       <label class="form__currency-row__field__label"><b>To Currency *</b></label>
 
-      @if (filteredToCurrencies.length > 0) {
-        <app-autocomplete
-          class="form__currency-row__field__autocomplete"
-          [formControlName]="formControls.TO_CURRENCY"
-          [items]="filteredToCurrencies"
-          (completeMethod)="filterToCurrencies($event)"
-          placeholder="Select currency"
-          [dropdown]="true"
-          [showClear]="true"
-        />
-      }
+      <app-autocomplete
+        class="form__currency-row__field__autocomplete"
+        [formControlName]="formControls.TO_CURRENCY"
+        [items]="filteredToCurrencies"
+        (completeMethod)="filterToCurrencies($event)"
+        placeholder="Select currency"
+        [dropdown]="true"
+        [showClear]="true"
+      />
 
       @if (
         form.get(formControls.TO_CURRENCY)?.touched && form.get(formControls.TO_CURRENCY)?.errors
@@ -61,6 +57,11 @@
             {{ formErrorMessages.REQUIRED }}
           }
         </small>
+      }
+      @if (form.hasError('sameCurrency')) {
+        <small class="form__currency-row__field__error">{{
+          formErrorMessages.SAME_CURRENCY
+        }}</small>
       }
     </div>
   </div>
@@ -74,7 +75,7 @@
       [minFractionDigits]="2"
       [maxFractionDigits]="2"
       placeholder="Enter amount"
-      [min]="0.01"
+      [min]="formValidators.MIN_AMOUNT"
     />
 
     @if (form.get(formControls.AMOUNT)?.touched && form.get(formControls.AMOUNT)?.errors) {
@@ -90,7 +91,7 @@
   </div>
 </form>
 
-@if (fromCurrency && toCurrency && amount) {
+@if (form.valid && fromCurrency && toCurrency && amount) {
   <app-conversion-result
     [isLoading]="isLoading"
     [conversionValue]="currencyConversionValue"
