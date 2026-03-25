@@ -46,6 +46,9 @@ export class CurrencyConverterExternal {
         },
       })
       .pipe(
+        tap((response: ResponseDTO<CurrencyConversionDTO>) =>
+          console.log('getCurrencyConversionValue response', response),
+        ),
         map((response: ResponseDTO<CurrencyConversionDTO>) =>
           this.currencyConverterMapper.mapCurrencyConversionDTOToCurrencyConversionValue(
             response.response,

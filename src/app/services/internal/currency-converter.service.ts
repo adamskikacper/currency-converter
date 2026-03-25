@@ -20,6 +20,7 @@ export class CurrencyConverterInternal {
   getCurrencyConversionValue(
     request: CurrencyConversionRequest,
   ): Observable<CurrencyConversionValue> {
+    console.log('getCurrencyConversionValue', request);
     return this.currencyConverterExternal.getCurrencyConversionValue(request);
   }
 }

@@ -4,19 +4,11 @@
 @use 'colors';
 
 h1 {
-  @include mixins.h1-mobile();
-
-  @media screen and (min-width: sizes.$tablet-size) {
-    @include mixins.h1-desktop();
-  }
+  @include mixins.h1();
 }
 
 h2 {
-  @include mixins.h2-mobile();
-
-  @media screen and (min-width: sizes.$tablet-size) {
-    @include mixins.h2-desktop();
-  }
+  @include mixins.h2();
 }
 
 h3 {
@@ -24,11 +16,7 @@ h3 {
 }
 
 h4 {
-  @include mixins.h4-mobile();
-
-  @media screen and (min-width: sizes.$tablet-size) {
-    @include mixins.h4-desktop();
-  }
+  @include mixins.h4();
 }
 
 h5 {
