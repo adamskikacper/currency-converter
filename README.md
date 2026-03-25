@@ -8,12 +8,12 @@ It fetches the available currencies from currencybeacon.com API and returns conv
 
 ## Features
 
-Select “from” and “to” currencies
-Input amount to convert
-Real-time conversion using API
-Currency list fetched from API
-Error handling for failed API requests
-Loading state for better UX via (Converting... message)
+- Select “from” and “to” currencies
+- Input amount to convert
+- Real-time conversion using API
+- Currency list fetched from API
+- Error handling for failed API requests
+- Loading state for better UX via (Converting... message)
 
 ## Tech Stack
 
